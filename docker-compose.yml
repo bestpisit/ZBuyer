@@ -47,6 +47,18 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: 'phpmyadmin:latest'
+        ports:
+            - 8080:80
+        networks:
+            - sail
+        environment:
+            - MYSQL_ROOT_PASSWORD='${DB_PASSWORD}'
+        links:
+            - "mysql:db"
+        depends_on:
+            - mysql
 networks:
     sail:
         driver: bridge
