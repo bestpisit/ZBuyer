@@ -18,4 +18,9 @@ class ProductController extends Controller
         ->get();
         return $customers;
     }
+    public function get_products(){
+        $products = DB::table('pets')
+        ->get();
+        return view('pages.productpage', compact('products'));
+    }
 }

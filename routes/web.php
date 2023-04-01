@@ -12,9 +12,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/products', function () {
-    return view('pages.productpage');
-})->middleware(['auth', 'verified'])->name('products');
+Route::get('/products', [ProductController::class,'get_products'])->middleware(['auth', 'verified'])->name('products');
 
 Route::get('/home', function () {
     return view('pages.homepage');
