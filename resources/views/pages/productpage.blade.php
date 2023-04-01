@@ -14,6 +14,14 @@
                     <div class="px-6 py-2 text-gray-600">
                         {{ $product->description }}
                     </div>
+                    <button onclick=""></button>
+                    <form method="POST" action="{{ route('create-order') }}">
+                        @csrf
+                        <div>
+                            <input type="hidden" id="name" name="name" value="{{$product->pet_id}}">
+                        </div>
+                        <button type="submit" class="m-2 p-2 bg-yellow-400 border-2 border-black">Add To Cart</button>
+                    </form>
                 </div>
             </div>
         </div>

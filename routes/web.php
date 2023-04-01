@@ -14,6 +14,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/products', [ProductController::class,'get_products'])->middleware(['auth', 'verified'])->name('products');
 
+Route::post('/createOrder', [ProductController::class, 'createOrder'])->name('create-order');
+
 Route::get('/home', function () {
     return view('pages.homepage');
 })->middleware(['auth', 'verified'])->name('home');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -22,5 +24,19 @@ class ProductController extends Controller
         $products = DB::table('pets')
         ->get();
         return view('pages.productpage', compact('products'));
+    }
+    public function createOrder(Request $data){
+        $order = Order::create([
+            'user_id' => 1
+        ]);
+        $pet = DB::table('pets')->where('pet_id',$data->input('name'))->first();
+        $orderItem = OrderItem::create([
+            'quantity' => 1,
+            'pet_id' => $pet->pet_id,
+            'order_id' => $order->id
+        ]);
+        $orderItem->save();
+        $order->save();
+        return $order;
     }
 }

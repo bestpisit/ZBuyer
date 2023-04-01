@@ -12,7 +12,8 @@ class Informations extends Model
     protected $fillable = [
         'address',
         'phone_number',
-        'user_id'
+        'user_id',
+        'current_order_id'
     ];
     public function users()
     { 
