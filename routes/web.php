@@ -12,6 +12,22 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/products', function () {
+    return view('pages.productpage');
+})->middleware(['auth', 'verified'])->name('products');
+
+Route::get('/home', function () {
+    return view('pages.homepage');
+})->middleware(['auth', 'verified'])->name('home');
+
+Route::get('/cart', function () {
+    return view('pages.cartpage');
+})->middleware(['auth', 'verified'])->name('cart');
+
+Route::get('/summary', function () {
+    return view('pages.summarypage');
+})->middleware(['auth', 'verified'])->name('summary');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
