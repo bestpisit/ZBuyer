@@ -46,4 +46,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Informations::class,'user_id');
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    public function pets(){
+        return $this->belongsToMany(Pet::class,'wish_lists'); 
+    }        
 }
