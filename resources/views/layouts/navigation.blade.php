@@ -1,6 +1,4 @@
-
-
-<nav x-data="{ open: false }" class="bg-yellow-400 border-b border-gray-400">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="flex h-20 justify-center">
@@ -8,8 +6,8 @@
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex  ">
 
 
-                <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                    {{ __('Home') }}
+                <x-nav-link :href="route('aboutus')" :active="request()->routeIs('aboutus')">
+                    {{ __('About us') }}
                 </x-nav-link>
 
                 <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
@@ -18,7 +16,7 @@
 
 
                 <!-- Web banner -->
-                <a class=' text-red-600 font-semibold text-xl cursor-default flex items-center static '> Zenith</a>
+                <a class='bold font-bold text-xl flex items-center static '> Zenith</a>
                 <!-- Navigation Links -->
 
         
