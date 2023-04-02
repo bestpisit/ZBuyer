@@ -22,6 +22,13 @@
                         </div>
                         <button type="submit" class="m-2 p-2 bg-yellow-400 border-2 border-black">Add To Cart</button>
                     </form>
+                    <form method="POST" action="{{ route('add-wishlist') }}">
+                        @csrf
+                        <div>
+                            <input type="hidden" id="pet_id" name="pet_id" value="{{$product->pet_id}}">
+                        </div>
+                        <button type="submit" class="m-2 p-2 bg-gray-800 border-2 border-black text-white">Add To WishList</button>
+                    </form>
                 </div>
             </div>
         </div>

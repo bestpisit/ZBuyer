@@ -25,6 +25,10 @@
                     {{ __('My Orders') }}
                 </x-nav-link>
 
+                <x-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
+                    {{ __('Wish List') }}
+                </x-nav-link>
+
 
                 <!-- Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -96,6 +100,11 @@
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
                     {{ __('My Orders') }}
+                </x-responsive-nav-link>
+            </div>
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
+                    {{ __('Wish List') }}
                 </x-responsive-nav-link>
             </div>
 
