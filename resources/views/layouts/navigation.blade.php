@@ -16,7 +16,7 @@
 
 
                 <!-- Web banner -->
-                <a class='bold font-bold text-xl flex items-center static '> Zenith</a>
+                <a class='bold font-bold text-xl flex items-center static '> <img style="width:35px;height:45px;" src="https://scontent.fcnx4-1.fna.fbcdn.net/v/t1.15752-9/333051745_504587958535247_5183009897938179888_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeG8g6H6dLRiJ8WVPWz8DO-P6g4Xc812r4zqDhdzzXavjHvTHXg-f9EjC7ss9ASJwYUsgtZG-6aFOdtFPM_HNU8E&_nc_ohc=dObVc4DscHcAX_UQ0Je&_nc_ht=scontent.fcnx4-1.fna&oh=03_AdTt9DrkL5iTZL_Y4PkIZh1Fje1wNQj13iqyBhqvWyhdxg&oe=6451203E" alt="Italian Trulli"></a>
                 <!-- Navigation Links -->
 
         
