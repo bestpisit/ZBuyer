@@ -12,6 +12,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/aboutus', function () {
+    return view('pages.aboutus');
+})->middleware(['auth', 'verified'])->name('aboutus');
+
+
+
+
 Route::get('/products', [ProductController::class,'get_products'])->middleware(['auth', 'verified'])->name('products');
 
 Route::get('/orders', [ProductController::class,'get_orders'])->middleware(['auth', 'verified'])->name('orders');
