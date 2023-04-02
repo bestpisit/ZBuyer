@@ -140,4 +140,36 @@ class ProductController extends Controller
         }
         return "Invalid Credential";
     }
+    public function get_wish_list(Request $request){
+        $user = $request->user();
+        $wish_lists = DB::table('wish_lists')->where('user_id',$user->id)->join('pets', 'pets.pet_id', '=', 'wish_lists.pet_id')->get();
+        return view('pages.wishlist', compact('wish_lists'));
+    }
+    public function remove_wishlist(Request $request){
+        $user = $request->user();
+        $wish_list = DB::table('wish_lists')->where('user_id',$user->id)->where('pet_id',$request->pet_id);
+        if($wish_list != null){
+            $wish_list->delete();
+            $wish_lists = DB::table('wish_lists')->where('user_id',$user->id)->join('pets', 'pets.pet_id', '=', 'wish_lists.pet_id')->get();
+            return view('pages.wishlist', compact('wish_lists'));
+        }
+        else{
+            return "Invalid Request";
+        }
+    }
+    public function add_wishlist(Request $request){
+        $user = $request->user();
+        $pet = DB::table('pets')->where('pet_id',$request->pet_id)->first();
+        if($pet != null){
+            if(DB::table('wish_lists')->where('user_id',$user->id)->where('pet_id',$request->pet_id)->first() == null){
+                $wish_list = DB::table('wish_lists')->insert([
+                    'user_id' => $user->id,
+                    'pet_id' => $pet->pet_id
+                ]);
+            }
+            $wish_lists = DB::table('wish_lists')->where('user_id',$user->id)->join('pets', 'pets.pet_id', '=', 'wish_lists.pet_id')->get();
+            return view('pages.wishlist', compact('wish_lists'));
+        }
+        return "Invalid Request";
+    }
 }
