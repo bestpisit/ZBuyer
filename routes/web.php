@@ -15,7 +15,9 @@ Route::get('/dashboard', function () {
 Route::get('/products', [ProductController::class,'get_products'])->middleware(['auth', 'verified'])->name('products');
 
 Route::get('/orders', [ProductController::class,'get_orders'])->middleware(['auth', 'verified'])->name('orders');
-Route::post('/get-order', [ProductController::class, 'createOrder'])->name('get-order');
+Route::post('/order', [ProductController::class, 'get_order'])->name('get-order');
+Route::post('/remove-order-item', [ProductController::class, 'remove_order_item'])->name('remove-order-item');
+Route::post('/purchase-order', [ProductController::class, 'purchase_order'])->name('purchase-order');
 
 Route::post('/createOrder', [ProductController::class, 'createOrder'])->name('create-order');
 
