@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Informations;
 
 class ProfileController extends Controller
 {
@@ -31,8 +32,12 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-
+        $request->user()->information()->phone_number = $request->phone_number;
         $request->user()->save();
+        $request->user()->information()->update([
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
+        ]);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
