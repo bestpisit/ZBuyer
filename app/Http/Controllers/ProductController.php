@@ -26,17 +26,41 @@ class ProductController extends Controller
         return view('pages.productpage', compact('products'));
     }
     public function createOrder(Request $data){
-        $order = Order::create([
-            'user_id' => 1
-        ]);
-        $pet = DB::table('pets')->where('pet_id',$data->input('name'))->first();
-        $orderItem = OrderItem::create([
-            'quantity' => 1,
-            'pet_id' => $pet->pet_id,
-            'order_id' => $order->id
-        ]);
-        $orderItem->save();
-        $order->save();
-        return $order;
+        $user = $data->user();
+        $information = $user->information()->first();
+        if($information->current_order_id <= 0){
+            $order = Order::create([
+                'user_id' => $data->user()->id
+            ]);
+            $pet = DB::table('pets')->where('pet_id',$data->input('name'))->first();
+            $orderItem = OrderItem::create([
+                'quantity' => 1,
+                'pet_id' => $pet->pet_id,
+                'order_id' => $order->id
+            ]);
+            $orderItem->save();
+            $order->save();
+            $information->update([
+                'current_order_id' => $orderItem->order_id
+            ]);
+            $information->save();
+            return $order;
+        }
+        else{
+            $order = DB::table('orders')->where('order_id',$information->current_order_id)->first();
+            if($order != null){
+                $pet = DB::table('pets')->where('pet_id',$data->input('name'))->first();
+                $orderItem = OrderItem::create([
+                    'quantity' => 1,
+                    'pet_id' => $pet->pet_id,
+                    'order_id' => $order->order_id
+                ]);
+                $orderItem->save();
+                return $order;
+            }
+            else{
+                return "Invalid Pet ID";
+            }
+        }
     }
 }
