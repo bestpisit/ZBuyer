@@ -63,4 +63,9 @@ class ProductController extends Controller
             }
         }
     }
+    public function get_orders(Request $request){
+        $user = $request->user();
+        $orders = DB::table('orders')->where('user_id',$user->id)->get();
+        return view('pages.cartpage', compact('orders'));
+    }
 }
