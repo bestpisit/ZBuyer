@@ -46,7 +46,8 @@ class RegisteredUserController extends Controller
         $information = Informations::create([
             'address' => "",
             'phone_number' => "",
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'current_order_id' => -1
         ]);
 
         event(new Registered($user));
