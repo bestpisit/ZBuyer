@@ -14,15 +14,18 @@ Route::get('/dashboard', function () {
 
 Route::get('/products', [ProductController::class,'get_products'])->middleware(['auth', 'verified'])->name('products');
 
+Route::get('/orders', [ProductController::class,'get_orders'])->middleware(['auth', 'verified'])->name('orders');
+Route::post('/get-order', [ProductController::class, 'createOrder'])->name('get-order');
+
 Route::post('/createOrder', [ProductController::class, 'createOrder'])->name('create-order');
 
 Route::get('/home', function () {
     return view('pages.homepage');
 })->middleware(['auth', 'verified'])->name('home');
 
-Route::get('/cart', function () {
-    return view('pages.cartpage');
-})->middleware(['auth', 'verified'])->name('cart');
+// Route::get('/cart', function () {
+//     return view('pages.cartpage');
+// })->middleware(['auth', 'verified'])->name('cart');
 
 Route::get('/summary', function () {
     return view('pages.summarypage');
