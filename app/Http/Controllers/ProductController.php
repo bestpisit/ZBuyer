@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
@@ -30,7 +31,9 @@ class ProductController extends Controller
         $information = $user->information()->first();
         if($information->current_order_id <= 0){
             $order = Order::create([
-                'user_id' => $data->user()->id
+                'user_id' => $data->user()->id,
+                'description' => "Order#",
+                'purchased' => false
             ]);
             $pet = DB::table('pets')->where('pet_id',$data->input('name'))->first();
             $orderItem = OrderItem::create([
@@ -44,28 +47,97 @@ class ProductController extends Controller
                 'current_order_id' => $orderItem->order_id
             ]);
             $information->save();
-            return $order;
+            $order_id = $order->order_id;
+            $purchased = false;
+            $order_items = DB::table('order_items')->where('order_items.order_id',$order_id)->join('pets', 'pets.pet_id', '=', 'order_items.pet_id')->get();
+            return view('pages.cartpage', compact(['purchased','order_id','order_items']));
         }
         else{
             $order = DB::table('orders')->where('order_id',$information->current_order_id)->first();
-            if($order != null){
+            if($order != null && $order->purchased == false){
                 $pet = DB::table('pets')->where('pet_id',$data->input('name'))->first();
                 $orderItem = OrderItem::create([
                     'quantity' => 1,
                     'pet_id' => $pet->pet_id,
                     'order_id' => $order->order_id
                 ]);
+                $purchased = false;
                 $orderItem->save();
-                return $order;
+                $order_id = $order->order_id;
+                $order_items = DB::table('order_items')->where('order_items.order_id',$order_id)->join('pets', 'pets.pet_id', '=', 'order_items.pet_id')->get();
+                return view('pages.cartpage', compact(['purchased','order_id','order_items']));
             }
             else{
-                return "Invalid Pet ID";
+                $ordere = Order::create([
+                    'user_id' => $data->user()->id,
+                    'description' => "",
+                    'purchased' => false
+                ]);
+                $pet = DB::table('pets')->where('pet_id',$data->input('name'))->first();
+                $orderItem = OrderItem::create([
+                    'quantity' => 1,
+                    'pet_id' => $pet->pet_id,
+                    'order_id' => $ordere->id
+                ]);
+                $orderItem->save();
+                $ordere->save();
+                $information->update([
+                    'current_order_id' => $orderItem->order_id
+                ]);
+                $information->save();
+                $order_id = $ordere->order_id;
+                $purchased = false;
+                $order_items = DB::table('order_items')->where('order_items.order_id',$order_id)->join('pets', 'pets.pet_id', '=', 'order_items.pet_id')->get();
+                return view('pages.cartpage', compact(['purchased','order_id','order_items']));
             }
         }
     }
     public function get_orders(Request $request){
         $user = $request->user();
         $orders = DB::table('orders')->where('user_id',$user->id)->get();
-        return view('pages.cartpage', compact('orders'));
+        return view('pages.orderspage', compact('orders'));
+    }
+    public function get_order(Request $request){
+        $user = $request->user();
+        $order = DB::table('orders')->where('user_id',$user->id)->where('order_id',$request->order_id)->first();
+        if($order != null){
+            $order_id = $request->order_id;
+            $purchased = $order->purchased;
+            $order_items = DB::table('order_items')->where('order_items.order_id',$request->order_id)->join('pets', 'pets.pet_id', '=', 'order_items.pet_id')->get();
+            if($order->purchased){
+                $price = DB::table('order_items')->where('order_items.order_id',$request->order_id)->join('pets', 'pets.pet_id', '=', 'order_items.pet_id')->sum('price');
+                return view('pages.cartpage', compact(['price','purchased','order_id','order_items']));
+            }
+            else{
+                return view('pages.cartpage', compact(['purchased','order_id','order_items']));
+            }
+        }
+        return "Invalid Credential";
+    }
+    public function remove_order_item(Request $request){
+        $user = $request->user();
+        $o_item = DB::table('order_items')->where('order_items.order_item_id',$request->order_item_id)->join('orders', 'orders.order_id', '=', 'order_items.order_id')->first();
+        if($o_item->purchased == false && $o_item->user_id == $user->id){
+            $order_item = DB::table('order_items')->where('order_items.order_item_id',$request->order_item_id)->delete();
+            $order_id = $request->order_id;
+            $purchased = $o_item->purchased;
+            $order_items = DB::table('order_items')->where('order_items.order_id',$order_id)->join('pets', 'pets.pet_id', '=', 'order_items.pet_id')->get();
+            return view('pages.cartpage', compact(['purchased','order_id','order_items']));
+        }
+        return "Invalid Credential";
+    }
+    public function purchase_order(Request $request){
+        $user = $request->user();
+        $order = DB::table('orders')->where('user_id',$user->id)->where('order_id',$request->order_id);
+        if($order != null && $order->first()->purchased == false){
+            $order->update([
+                'purchased' => true
+            ]);
+            $user->information()->update([
+                'current_order_id' => -1
+            ]);
+            return Redirect::route('orders');
+        }
+        return "Invalid Credential";
     }
 }
