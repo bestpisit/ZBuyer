@@ -12,15 +12,16 @@
                         {{ $product->name }}
                     </div>
                     <div class="px-6 py-2 text-gray-600">
-                        {{ $product->description }}
+                        Price: {{ $product->price }}
                     </div>
+                    <img src="{{ $product->description }}" width="200" height="200"/>
                     <button onclick=""></button>
-                    <form method="POST" action="{{ route('create-order') }}">
+                    <form method="POST" action="{{ route('create-order') }}" class="m-2">
                         @csrf
                         <div>
                             <input type="hidden" id="name" name="name" value="{{$product->pet_id}}">
                         </div>
-                        <button type="submit" class="m-2 p-2 bg-yellow-400 border-2 border-black">Add To Cart</button>
+                        <button type="submit" class="m-2 p-4 bg-gray-500 border-2 border-black text-white">Add To Cart</button>
                     </form>
                     <form method="POST" action="{{ route('add-wishlist') }}">
                         @csrf
