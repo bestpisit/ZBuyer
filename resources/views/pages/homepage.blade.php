@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">  
-        <h2 class="font-semibold text-xl text-gray-100 dark:text-gray-200 leading-tight border-l-8 border-[#587498] pl-3">
+        <h2 class="font-semibold text-xl text-white dark:text-gray-200 leading-tight border-l-8 border-[#587498] pl-3">
             {{ __('Home page') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-2">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white bg-opacity-60 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("This is our EER diagram.") }}
                     

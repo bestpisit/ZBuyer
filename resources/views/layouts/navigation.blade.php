@@ -1,8 +1,10 @@
 <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
-<nav x-data="{ open: false }" class="bg-[#FFD800]">
+<nav x-data="{ open: false }" class="bg-[#FFD800] border-b-4 border-[#36454F]"
+>
     <!-- Primary Navigation Menu -->
-    <div class="px-4 sm:px-6 lg:px-8">
+    <div class="px-4 sm:px-6 lg:px-8"
+    >
         <div class="flex h-20 justify-center">
 
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex  ">
@@ -23,9 +25,10 @@
 
 
                 <!-- Web banner -->
-                <a class=' font-extrabold text-red-600 text-3xl flex items-center static cursor-default
-                 
-                '> The ZBuyer</a>
+                <img src="/img/zbuyerbg.jpg" alt="cart" class=" object-contain  w-90 h-100 rounded-full border-[#FF7F50]">
+                {{-- <a class=' font-extrabold text-red-600 text-3xl flex items-center static cursor-default
+                
+                '> The ZBuyer</a> --}}
                 
                 <!-- Navigation Links -->
 

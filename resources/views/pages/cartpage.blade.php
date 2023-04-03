@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-200 dark:text-gray-200 leading-tight flex cursor-default">
+        <h2 class="font-semibold text-xl text-white dark:text-gray-200 leading-tight flex cursor-default">
             {{'Orders ID  NO. '}}
             <div class="flex pl-1 font-semibold text-white hover:text-red-400 cursor-default">
             {{$order_id}}
