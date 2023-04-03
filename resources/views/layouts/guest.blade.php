@@ -14,17 +14,26 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+    <body class="font-sans text-gray-900 antialiased "
+    
+    >
+   
+
+        <div class=" h-screen bg-cente bg-cover bg-opacity-50 min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900"
+        style="background-image: url('/img/zbuyerbg.jpg')"
+        >
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <a class="font-bold text-xl"> Welcome to </a>
+                    <a class="font-bold text-xl text-red-600">ZBuyer</a>
+                    
                 </a>
             </div>
 
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
+        </div>
         </div>
     </body>
 </html>

@@ -25,7 +25,7 @@
                 <!-- Web banner -->
                 <a class=' font-extrabold text-red-600 text-3xl flex items-center static cursor-default
                  
-                '> The Zenith</a>
+                '> The ZBuyer</a>
                 
                 <!-- Navigation Links -->
 
@@ -59,7 +59,7 @@
                                     </svg>
                                 </div>
                             </button>
-                        </x-slot>
+                        </x-slot> 
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')">
