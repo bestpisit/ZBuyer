@@ -1,7 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-black leading-tight">
+        <h2 class="font-semibold text-xl text-black leading-tight border-l-8 border-[#517851] pl-3">
             {{ __('What is about our website.') }}
+           
         </h2>
     </x-slot>
 

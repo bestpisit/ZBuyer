@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight border-l-8 border-[#E86850] pl-3">
             {{ __('Choose one you like!') }}
         </h2>
     </x-slot>

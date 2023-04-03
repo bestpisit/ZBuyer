@@ -1,6 +1,6 @@
 <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
-<nav x-data="{ open: false }" class="navbar border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-[#FFD800]">
     <!-- Primary Navigation Menu -->
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="flex h-20 justify-center">
@@ -23,12 +23,18 @@
 
 
                 <!-- Web banner -->
-                <a class='bold font-semibold text-red-600 text-xl flex items-center static '> Zenith</a>
+          
+                <a class=' font-extrabold text-red-600 text-3xl flex items-center static cursor-default
+                 
+                '> The Zenith</a>
+                
                 <!-- Navigation Links -->
 
         
-                <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
-                    <img src="/img/cart2.png" alt="cart">
+                <x-nav-link class="static" :href="route('orders')" :active="request()->routeIs('orders')">
+                    <div class="pr-2">
+                    <img src="/img/shopping-cart2.png" alt="cart" class=" object-contain h-6 w-6">
+                    </div>
                     {{ __('My Orders') }}
                 </x-nav-link>
 
