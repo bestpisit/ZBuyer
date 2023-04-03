@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-100 dark:text-gray-200 leading-tight  border-l-8 border-[#517851] pl-3">
             {{ __('Your Orders') }}
         </h2>
     </x-slot>

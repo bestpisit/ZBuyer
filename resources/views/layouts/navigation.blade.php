@@ -1,6 +1,6 @@
 <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
-<nav x-data="{ open: false }" class="navbar border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-[#FFD800]">
     <!-- Primary Navigation Menu -->
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="flex h-20 justify-center">
@@ -23,13 +23,17 @@
 
 
                 <!-- Web banner -->
-                <a class='bold font-semibold text-red-600 text-xl flex items-center static '><img width="100" height="75" src="https://scontent.fcnx4-1.fna.fbcdn.net/v/t1.15752-9/333051745_504587958535247_5183009897938179888_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeG8g6H6dLRiJ8WVPWz8DO-P6g4Xc812r4zqDhdzzXavjHvTHXg-f9EjC7ss9ASJwYUsgtZG-6aFOdtFPM_HNU8E&_nc_ohc=CqoSQQYERjgAX9uzfWO&_nc_ht=scontent.fcnx4-1.fna&oh=03_AdTJP-kiGQbVrNnFgUaS9bbOjXNzb6Ur9SrcZorvENfW_Q&oe=6451C8FE" alt="Girl in a jacket">
-                </a>
+                <a class=' font-extrabold text-red-600 text-3xl flex items-center static cursor-default
+                 
+                '> The Zenith</a>
+                
                 <!-- Navigation Links -->
 
         
-                <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
-                    <img src="/img/cart2.png" alt="cart">
+                <x-nav-link class="static" :href="route('orders')" :active="request()->routeIs('orders')">
+                    <div class="pr-2">
+                    <img src="/img/shopping-cart2.png" alt="cart" class=" object-contain h-6 w-6">
+                    </div>
                     {{ __('My Orders') }}
                 </x-nav-link>
 
