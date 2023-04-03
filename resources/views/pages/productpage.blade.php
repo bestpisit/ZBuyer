@@ -23,10 +23,10 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100 cursor-default ">
                         <div class="bg-red-400 rounded p-1 w-24 text-white cursor-default">
                         Prices : {{ $product->price }} $
-                        </div>
                     </div>
+                    <img src="{{ $product->description }}" width="200" height="200"/>
                     <button onclick=""></button>
-                    <form method="POST" action="{{ route('create-order') }}">
+                    <form method="POST" action="{{ route('create-order') }}" class="m-2">
                         @csrf
                         <div>
                             <input type="hidden" id="name" name="name" value="{{$product->pet_id}}">

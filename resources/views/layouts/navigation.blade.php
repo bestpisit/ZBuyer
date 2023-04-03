@@ -13,7 +13,7 @@
                 </x-nav-link>
 
 
-                <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                <x-nav-link :href="route('home')" :active="request()->routeIs('home') || request()->routeIs('dashboard')">
                     {{ __('Home') }}
                 </x-nav-link>
 
@@ -23,7 +23,6 @@
 
 
                 <!-- Web banner -->
-          
                 <a class=' font-extrabold text-red-600 text-3xl flex items-center static cursor-default
                  
                 '> The Zenith</a>
