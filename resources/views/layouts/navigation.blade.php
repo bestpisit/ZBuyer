@@ -1,7 +1,7 @@
 <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
-<nav x-data="{ open: false }" class="bg-[#FFD800] border-b-4 border-[#36454F]"
->
+<nav x-data="{ open: false }" class=" bg-[#FFD800] border-b-4 border-white" 
+><!--bg-[#FFD800]-->
     <!-- Primary Navigation Menu -->
     <div class="px-4 sm:px-6 lg:px-8"
     >
